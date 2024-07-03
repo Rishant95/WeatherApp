@@ -25,6 +25,7 @@ A simple weather app built with Flutter that displays current weather informatio
 2. Navigate to the project directory.
 3. Run `flutter pub get` to install dependencies.
 4. Run the app on your preferred device or emulator using `flutter run`.
+5. If just want to run the final build go to release and download the apk .
 
 ## Usage
 

@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                     SearchBar(
                       onSubmitted: (value) {
                         setState(() {
-                          city = value;
+                          setSavedCity(value); // Save new city when submitted
                         });
                       },
                       hintText: 'Search City here',

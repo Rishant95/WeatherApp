@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 //The main function which gets the data from http request and return in a map of string,dynamic after json decoding
 Future<Map<String, dynamic>> getData() async {
-  String city = await getSavedCity();
+  String? city = await getSavedCity();
   const apiKey = "0d4327c746cf1fd20b522e3dc2dc2979";
   final url =
       'https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey&units=metric';
@@ -21,9 +21,15 @@ Future<Map<String, dynamic>> getData() async {
 }
 
 //This get ths last stored city value if none returns delhi
-Future<String> getSavedCity() async {
+Future<String?> getSavedCity() async {
   final prefs = await SharedPreferences.getInstance();
-  return prefs.getString('lastCity') ?? 'Delhi';
+
+  if (prefs.getString('lastCity') == null) {
+    await prefs.setString("lastCity", "delhi");
+    return "delhi";
+  } else {
+    return prefs.getString('lastCity');
+  }
 }
 
 //This function get images according to the weather string and these image are ai generated
